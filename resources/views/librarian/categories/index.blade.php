@@ -16,8 +16,8 @@
                     <form method="POST" action="{{ route('librarian.categories.store') }}" class="space-y-4">
                         @csrf
                         <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Category Name *</label>
-                            <input type="text" name="name" value="{{ old('name') }}" required placeholder="e.g. Artificial Intelligence"
+                            <label for="category_name" class="block text-xs font-bold text-gray-700 uppercase mb-1">Category Name *</label>
+                            <input type="text" id="category_name" name="name" value="{{ old('name') }}" required placeholder="e.g. Artificial Intelligence"
                                 class="w-full text-sm rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
                             @error('name') <span class="text-xs text-rose-600">{{ $message }}</span> @enderror
                         </div>
@@ -43,18 +43,35 @@
                                 </thead>
                                 <tbody class="divide-y divide-gray-100 text-sm">
                                     @foreach ($categories as $cat)
-                                        <tr>
-                                            <td class="py-3 px-4 font-semibold text-gray-900">
-                                                {{ $cat->name }}
+                                        <tr x-data="{ editing: false }">
+                                            <td class="py-3 px-4">
+                                                <div x-show="!editing" class="font-semibold text-gray-900">
+                                                    {{ $cat->name }}
+                                                </div>
+                                                <form x-show="editing" x-cloak method="POST" action="{{ route('librarian.categories.update', $cat->id) }}" class="flex items-center space-x-2">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="text" name="name" value="{{ $cat->name }}" required
+                                                        class="text-xs py-1 px-2 rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
+                                                    <button type="submit" class="px-2 py-1 bg-indigo-600 text-white text-xs rounded hover:bg-indigo-700 font-bold">
+                                                        Save
+                                                    </button>
+                                                    <button type="button" @click="editing = false" class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded hover:bg-gray-200">
+                                                        Cancel
+                                                    </button>
+                                                </form>
                                             </td>
                                             <td class="py-3 px-4">
                                                 <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-800">
                                                     {{ $cat->books_count }} Books
                                                 </span>
                                             </td>
-                                            <td class="py-3 px-4 text-right">
+                                            <td class="py-3 px-4 text-right space-x-2 whitespace-nowrap">
+                                                <button type="button" @click="editing = !editing" class="text-xs text-indigo-600 hover:text-indigo-800 font-semibold">
+                                                    Edit
+                                                </button>
                                                 @if ($cat->books_count === 0)
-                                                    <form method="POST" action="{{ route('librarian.categories.destroy', $cat->id) }}" class="inline" onsubmit="return confirm('Delete category {{ $cat->name }}?');">
+                                                    <form method="POST" action="{{ route('librarian.categories.destroy', $cat->id) }}" class="inline" onsubmit="return confirm('Are you sure you want to delete category \'{{ addslashes($cat->name) }}\'?');">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="text-xs text-rose-600 hover:text-rose-800 font-semibold">Delete</button>

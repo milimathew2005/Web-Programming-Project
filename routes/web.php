@@ -14,7 +14,30 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    $totalBooks = 0;
+    $totalCopies = 0;
+    $availableCopies = 0;
+    $categories = collect();
+    $recentBooks = collect();
+
+    if (\Illuminate\Support\Facades\Schema::hasTable('books')) {
+        $totalBooks = \App\Models\Book::count();
+        $totalCopies = \App\Models\BookCopy::count();
+        $availableCopies = \App\Models\BookCopy::where('status', 'available')->count();
+        $categories = \App\Models\Category::withCount('books')->orderBy('name')->take(8)->get();
+        $recentBooks = \App\Models\Book::with('category')
+            ->withCount([
+                'copies as total_copies_count',
+                'copies as available_copies_count' => function ($q) {
+                    $q->where('status', 'available');
+                },
+            ])
+            ->latest()
+            ->take(4)
+            ->get();
+    }
+
+    return view('welcome', compact('totalBooks', 'totalCopies', 'availableCopies', 'categories', 'recentBooks'));
 });
 
 /**

@@ -22,32 +22,32 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Title -->
                         <div class="md:col-span-2">
-                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Book Title *</label>
-                            <input type="text" name="title" value="{{ old('title', $book->title) }}" required
+                            <label for="edit_book_title" class="block text-xs font-bold text-gray-700 uppercase mb-1">Book Title *</label>
+                            <input type="text" id="edit_book_title" name="title" value="{{ old('title', $book->title) }}" required
                                 class="w-full text-sm rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
                             @error('title') <span class="text-xs text-rose-600">{{ $message }}</span> @enderror
                         </div>
 
                         <!-- Author -->
                         <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Author *</label>
-                            <input type="text" name="author" value="{{ old('author', $book->author) }}" required
+                            <label for="edit_book_author" class="block text-xs font-bold text-gray-700 uppercase mb-1">Author *</label>
+                            <input type="text" id="edit_book_author" name="author" value="{{ old('author', $book->author) }}" required
                                 class="w-full text-sm rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
                             @error('author') <span class="text-xs text-rose-600">{{ $message }}</span> @enderror
                         </div>
 
                         <!-- ISBN -->
                         <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ISBN *</label>
-                            <input type="text" name="isbn" value="{{ old('isbn', $book->isbn) }}" required
+                            <label for="edit_book_isbn" class="block text-xs font-bold text-gray-700 uppercase mb-1">ISBN *</label>
+                            <input type="text" id="edit_book_isbn" name="isbn" value="{{ old('isbn', $book->isbn) }}" required
                                 class="w-full text-sm rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 font-mono">
                             @error('isbn') <span class="text-xs text-rose-600">{{ $message }}</span> @enderror
                         </div>
 
                         <!-- Category -->
                         <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Category *</label>
-                            <select name="category_id" required class="w-full text-sm rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
+                            <label for="edit_book_category_id" class="block text-xs font-bold text-gray-700 uppercase mb-1">Category *</label>
+                            <select id="edit_book_category_id" name="category_id" required class="w-full text-sm rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
                                 @foreach ($categories as $cat)
                                     <option value="{{ $cat->id }}" {{ old('category_id', $book->category_id) == $cat->id ? 'selected' : '' }}>
                                         {{ $cat->name }}
@@ -59,32 +59,32 @@
 
                         <!-- Publisher -->
                         <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Publisher *</label>
-                            <input type="text" name="publisher" value="{{ old('publisher', $book->publisher) }}" required
+                            <label for="edit_book_publisher" class="block text-xs font-bold text-gray-700 uppercase mb-1">Publisher *</label>
+                            <input type="text" id="edit_book_publisher" name="publisher" value="{{ old('publisher', $book->publisher) }}" required
                                 class="w-full text-sm rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
                             @error('publisher') <span class="text-xs text-rose-600">{{ $message }}</span> @enderror
                         </div>
 
                         <!-- Published Year -->
                         <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Published Year *</label>
-                            <input type="number" name="published_year" value="{{ old('published_year', $book->published_year) }}" required
+                            <label for="edit_book_published_year" class="block text-xs font-bold text-gray-700 uppercase mb-1">Published Year *</label>
+                            <input type="number" id="edit_book_published_year" name="published_year" value="{{ old('published_year', $book->published_year) }}" required
                                 class="w-full text-sm rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
                             @error('published_year') <span class="text-xs text-rose-600">{{ $message }}</span> @enderror
                         </div>
 
                         <!-- Cover Image Upload -->
                         <div class="md:col-span-2">
-                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Update Cover Image (Optional)</label>
-                            <input type="file" name="cover_image" accept="image/*"
+                            <label for="edit_book_cover_image" class="block text-xs font-bold text-gray-700 uppercase mb-1">Update Cover Image (Optional)</label>
+                            <input type="file" id="edit_book_cover_image" name="cover_image" accept="image/*"
                                 class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
                             @error('cover_image') <span class="text-xs text-rose-600">{{ $message }}</span> @enderror
                         </div>
 
                         <!-- Description -->
                         <div class="md:col-span-2">
-                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Description</label>
-                            <textarea name="description" rows="4" class="w-full text-sm rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">{{ old('description', $book->description) }}</textarea>
+                            <label for="edit_book_description" class="block text-xs font-bold text-gray-700 uppercase mb-1">Description</label>
+                            <textarea id="edit_book_description" name="description" rows="4" class="w-full text-sm rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">{{ old('description', $book->description) }}</textarea>
                             @error('description') <span class="text-xs text-rose-600">{{ $message }}</span> @enderror
                         </div>
                     </div>

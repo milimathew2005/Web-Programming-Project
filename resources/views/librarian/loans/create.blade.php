@@ -25,8 +25,8 @@
 
                     <!-- Select Student -->
                     <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Select Student *</label>
-                        <select name="user_id" required class="w-full text-sm rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
+                        <label for="loan_student_id" class="block text-xs font-bold text-gray-700 uppercase mb-1">Select Student *</label>
+                        <select id="loan_student_id" name="user_id" required class="w-full text-sm rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
                             <option value="">Select Student</option>
                             @foreach ($students as $student)
                                 <option value="{{ $student->id }}" {{ old('user_id') == $student->id ? 'selected' : '' }}>
@@ -39,8 +39,8 @@
 
                     <!-- Select Book Copy -->
                     <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Select Available Book Copy *</label>
-                        <select name="book_copy_id" required class="w-full text-sm rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 font-mono">
+                        <label for="loan_book_copy_id" class="block text-xs font-bold text-gray-700 uppercase mb-1">Select Available Book Copy *</label>
+                        <select id="loan_book_copy_id" name="book_copy_id" required class="w-full text-sm rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 font-mono">
                             <option value="">Select Book Copy</option>
                             @foreach ($availableCopies as $copy)
                                 <option value="{{ $copy->id }}" {{ old('book_copy_id') == $copy->id ? 'selected' : '' }}>

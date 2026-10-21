@@ -21,32 +21,32 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Title -->
                         <div class="md:col-span-2">
-                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Book Title *</label>
-                            <input type="text" name="title" value="{{ old('title') }}" required
+                            <label for="book_title" class="block text-xs font-bold text-gray-700 uppercase mb-1">Book Title *</label>
+                            <input type="text" id="book_title" name="title" value="{{ old('title') }}" required
                                 class="w-full text-sm rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
                             @error('title') <span class="text-xs text-rose-600">{{ $message }}</span> @enderror
                         </div>
 
                         <!-- Author -->
                         <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Author *</label>
-                            <input type="text" name="author" value="{{ old('author') }}" required
+                            <label for="book_author" class="block text-xs font-bold text-gray-700 uppercase mb-1">Author *</label>
+                            <input type="text" id="book_author" name="author" value="{{ old('author') }}" required
                                 class="w-full text-sm rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
                             @error('author') <span class="text-xs text-rose-600">{{ $message }}</span> @enderror
                         </div>
 
                         <!-- ISBN -->
                         <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ISBN (Unique) *</label>
-                            <input type="text" name="isbn" value="{{ old('isbn') }}" required placeholder="e.g. 978-0132350884"
+                            <label for="book_isbn" class="block text-xs font-bold text-gray-700 uppercase mb-1">ISBN (Unique) *</label>
+                            <input type="text" id="book_isbn" name="isbn" value="{{ old('isbn') }}" required placeholder="e.g. 978-0132350884"
                                 class="w-full text-sm rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 font-mono">
                             @error('isbn') <span class="text-xs text-rose-600">{{ $message }}</span> @enderror
                         </div>
 
                         <!-- Category -->
                         <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Category *</label>
-                            <select name="category_id" required class="w-full text-sm rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
+                            <label for="book_category_id" class="block text-xs font-bold text-gray-700 uppercase mb-1">Category *</label>
+                            <select id="book_category_id" name="category_id" required class="w-full text-sm rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
                                 <option value="">Select Category</option>
                                 @foreach ($categories as $cat)
                                     <option value="{{ $cat->id }}" {{ old('category_id') == $cat->id ? 'selected' : '' }}>
@@ -59,24 +59,24 @@
 
                         <!-- Publisher -->
                         <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Publisher *</label>
-                            <input type="text" name="publisher" value="{{ old('publisher') }}" required
+                            <label for="book_publisher" class="block text-xs font-bold text-gray-700 uppercase mb-1">Publisher *</label>
+                            <input type="text" id="book_publisher" name="publisher" value="{{ old('publisher') }}" required
                                 class="w-full text-sm rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
                             @error('publisher') <span class="text-xs text-rose-600">{{ $message }}</span> @enderror
                         </div>
 
                         <!-- Published Year -->
                         <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Published Year *</label>
-                            <input type="number" name="published_year" value="{{ old('published_year', date('Y')) }}" required
+                            <label for="book_published_year" class="block text-xs font-bold text-gray-700 uppercase mb-1">Published Year *</label>
+                            <input type="number" id="book_published_year" name="published_year" value="{{ old('published_year', date('Y')) }}" required
                                 class="w-full text-sm rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
                             @error('published_year') <span class="text-xs text-rose-600">{{ $message }}</span> @enderror
                         </div>
 
                         <!-- Initial Copies Count -->
                         <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Initial Physical Copies *</label>
-                            <input type="number" name="initial_copies" value="{{ old('initial_copies', 2) }}" min="1" max="20" required
+                            <label for="book_initial_copies" class="block text-xs font-bold text-gray-700 uppercase mb-1">Initial Physical Copies *</label>
+                            <input type="number" id="book_initial_copies" name="initial_copies" value="{{ old('initial_copies', 2) }}" min="1" max="20" required
                                 class="w-full text-sm rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
                             <span class="text-[11px] text-gray-500">Auto-generates unique copy tracking codes (e.g. BK0015-C1)</span>
                             @error('initial_copies') <span class="text-xs text-rose-600">{{ $message }}</span> @enderror
@@ -84,16 +84,16 @@
 
                         <!-- Cover Image Upload -->
                         <div class="md:col-span-2">
-                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Cover Image (Optional)</label>
-                            <input type="file" name="cover_image" accept="image/*"
+                            <label for="book_cover_image" class="block text-xs font-bold text-gray-700 uppercase mb-1">Cover Image (Optional)</label>
+                            <input type="file" id="book_cover_image" name="cover_image" accept="image/*"
                                 class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
                             @error('cover_image') <span class="text-xs text-rose-600">{{ $message }}</span> @enderror
                         </div>
 
                         <!-- Description -->
                         <div class="md:col-span-2">
-                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Description</label>
-                            <textarea name="description" rows="4" class="w-full text-sm rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">{{ old('description') }}</textarea>
+                            <label for="book_description" class="block text-xs font-bold text-gray-700 uppercase mb-1">Description</label>
+                            <textarea id="book_description" name="description" rows="4" class="w-full text-sm rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">{{ old('description') }}</textarea>
                             @error('description') <span class="text-xs text-rose-600">{{ $message }}</span> @enderror
                         </div>
                     </div>

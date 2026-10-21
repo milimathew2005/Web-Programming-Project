@@ -78,6 +78,14 @@ class Book extends Model
      */
     public function availableCopiesCount(): int
     {
+        if (isset($this->attributes['available_copies_count'])) {
+            return (int) $this->attributes['available_copies_count'];
+        }
+
+        if ($this->relationLoaded('copies')) {
+            return $this->copies->where('status', 'available')->count();
+        }
+
         return $this->copies()->where('status', 'available')->count();
     }
 
@@ -86,6 +94,14 @@ class Book extends Model
      */
     public function totalCopiesCount(): int
     {
+        if (isset($this->attributes['total_copies_count'])) {
+            return (int) $this->attributes['total_copies_count'];
+        }
+
+        if ($this->relationLoaded('copies')) {
+            return $this->copies->count();
+        }
+
         return $this->copies()->count();
     }
 

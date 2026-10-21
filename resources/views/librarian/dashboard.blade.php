@@ -83,13 +83,13 @@
 
                     <form method="GET" action="{{ route('librarian.dashboard') }}" class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
                         <div>
-                            <label class="block text-xs font-semibold text-indigo-200 uppercase mb-1">Due Date</label>
-                            <input type="date" name="due_date" value="{{ $calcDueDate }}" required
+                            <label for="calc_due_date" class="block text-xs font-semibold text-indigo-200 uppercase mb-1">Due Date</label>
+                            <input type="date" id="calc_due_date" name="due_date" value="{{ $calcDueDate }}" required
                                 class="w-full text-xs py-2 rounded border-none bg-white/10 text-white focus:ring-2 focus:ring-indigo-400">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold text-indigo-200 uppercase mb-1">Return Date (Optional)</label>
-                            <input type="date" name="returned_at" value="{{ $calcReturnDate }}"
+                            <label for="calc_returned_at" class="block text-xs font-semibold text-indigo-200 uppercase mb-1">Return Date (Optional)</label>
+                            <input type="date" id="calc_returned_at" name="returned_at" value="{{ $calcReturnDate }}"
                                 class="w-full text-xs py-2 rounded border-none bg-white/10 text-white focus:ring-2 focus:ring-indigo-400">
                         </div>
                         <div class="flex items-center space-x-2">
@@ -187,7 +187,8 @@
                                                 {{ $reservation->bookCopy->copy_code }}
                                             </td>
                                             <td class="py-3 px-2 text-right">
-                                                <form method="POST" action="{{ route('librarian.reservations.issue', $reservation->id) }}" class="inline">
+                                                <form method="POST" action="{{ route('librarian.reservations.issue', $reservation->id) }}" class="inline"
+                                                    onsubmit="return confirm('Issue reserved copy {{ $reservation->bookCopy->copy_code }} to {{ addslashes($reservation->user->name) }}?');">
                                                     @csrf
                                                     <button type="submit" class="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-semibold rounded shadow-sm">
                                                         Issue

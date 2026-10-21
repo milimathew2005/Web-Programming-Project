@@ -82,46 +82,48 @@
 
                 @if ($pastReservations->count() > 0)
                     <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                        <table class="w-full text-left border-collapse">
-                            <thead>
-                                <tr class="bg-gray-50 border-b border-gray-100 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                                    <th class="py-3.5 px-6">Book Title</th>
-                                    <th class="py-3.5 px-6">Copy Code</th>
-                                    <th class="py-3.5 px-6">Reserved At</th>
-                                    <th class="py-3.5 px-6">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-100 text-sm">
-                                @foreach ($pastReservations as $reservation)
-                                    <tr class="hover:bg-gray-50/50">
-                                        <td class="py-4 px-6 font-medium text-gray-900">
-                                            {{ $reservation->bookCopy->book->title }}
-                                        </td>
-                                        <td class="py-4 px-6 font-mono text-xs text-gray-600">
-                                            {{ $reservation->bookCopy->copy_code }}
-                                        </td>
-                                        <td class="py-4 px-6 text-xs text-gray-500">
-                                            {{ $reservation->reserved_at->format('M d, Y') }}
-                                        </td>
-                                        <td class="py-4 px-6">
-                                            @if ($reservation->status === 'collected')
-                                                <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-800">
-                                                    Collected
-                                                </span>
-                                            @elseif ($reservation->status === 'cancelled')
-                                                <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-700">
-                                                    Cancelled
-                                                </span>
-                                            @else
-                                                <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-rose-100 text-rose-800">
-                                                    Expired
-                                                </span>
-                                            @endif
-                                        </td>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-gray-50 border-b border-gray-100 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                                        <th class="py-3.5 px-6">Book Title</th>
+                                        <th class="py-3.5 px-6">Copy Code</th>
+                                        <th class="py-3.5 px-6">Reserved At</th>
+                                        <th class="py-3.5 px-6">Status</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody class="divide-y divide-gray-100 text-sm">
+                                    @foreach ($pastReservations as $reservation)
+                                        <tr class="hover:bg-gray-50/50">
+                                            <td class="py-4 px-6 font-medium text-gray-900">
+                                                {{ $reservation->bookCopy->book->title }}
+                                            </td>
+                                            <td class="py-4 px-6 font-mono text-xs text-gray-600">
+                                                {{ $reservation->bookCopy->copy_code }}
+                                            </td>
+                                            <td class="py-4 px-6 text-xs text-gray-500">
+                                                {{ $reservation->reserved_at->format('M d, Y') }}
+                                            </td>
+                                            <td class="py-4 px-6">
+                                                @if ($reservation->status === 'collected')
+                                                    <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-800">
+                                                        Collected
+                                                    </span>
+                                                @elseif ($reservation->status === 'cancelled')
+                                                    <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-700">
+                                                        Cancelled
+                                                    </span>
+                                                @else
+                                                    <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-rose-100 text-rose-800">
+                                                        Expired
+                                                    </span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="mt-4">
                         {{ $pastReservations->links() }}

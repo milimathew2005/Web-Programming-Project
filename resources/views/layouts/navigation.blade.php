@@ -13,21 +13,24 @@
                 <!-- Navigation Links based on User Role -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     @if (Auth::user()->isStudent())
-                        <x-nav-link :href="route('books.index')" :active="request()->routeIs('books.index')">
+                        <x-nav-link :href="route('books.index')" :active="request()->routeIs('books.*')">
                             {{ __('Catalog') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('student.reservations')" :active="request()->routeIs('student.reservations')">
+                        <x-nav-link :href="route('student.reservations')" :active="request()->routeIs('student.reservations*')">
                             {{ __('My Reservations') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('student.fines')" :active="request()->routeIs('student.fines')">
+                        <x-nav-link :href="route('student.fines')" :active="request()->routeIs('student.fines*')">
                             {{ __('My Fines') }}
                         </x-nav-link>
                     @elseif (Auth::user()->isLibrarian())
-                        <x-nav-link :href="route('librarian.dashboard')" :active="request()->routeIs('librarian.dashboard')">
+                        <x-nav-link :href="route('librarian.dashboard')" :active="request()->routeIs('librarian.dashboard*')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
                         <x-nav-link :href="route('librarian.books.index')" :active="request()->routeIs('librarian.books.*')">
                             {{ __('Books') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('librarian.categories.index')" :active="request()->routeIs('librarian.categories.*')">
+                            {{ __('Categories') }}
                         </x-nav-link>
                         <x-nav-link :href="route('librarian.reservations.index')" :active="request()->routeIs('librarian.reservations.*')">
                             {{ __('Reservations') }}
@@ -97,21 +100,24 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             @if (Auth::user()->isStudent())
-                <x-responsive-nav-link :href="route('books.index')" :active="request()->routeIs('books.index')">
+                <x-responsive-nav-link :href="route('books.index')" :active="request()->routeIs('books.*')">
                     {{ __('Catalog') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('student.reservations')" :active="request()->routeIs('student.reservations')">
+                <x-responsive-nav-link :href="route('student.reservations')" :active="request()->routeIs('student.reservations*')">
                     {{ __('My Reservations') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('student.fines')" :active="request()->routeIs('student.fines')">
+                <x-responsive-nav-link :href="route('student.fines')" :active="request()->routeIs('student.fines*')">
                     {{ __('My Fines') }}
                 </x-responsive-nav-link>
             @elseif (Auth::user()->isLibrarian())
-                <x-responsive-nav-link :href="route('librarian.dashboard')" :active="request()->routeIs('librarian.dashboard')">
+                <x-responsive-nav-link :href="route('librarian.dashboard')" :active="request()->routeIs('librarian.dashboard*')">
                     {{ __('Dashboard') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('librarian.books.index')" :active="request()->routeIs('librarian.books.*')">
                     {{ __('Books') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('librarian.categories.index')" :active="request()->routeIs('librarian.categories.*')">
+                    {{ __('Categories') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('librarian.reservations.index')" :active="request()->routeIs('librarian.reservations.*')">
                     {{ __('Reservations') }}

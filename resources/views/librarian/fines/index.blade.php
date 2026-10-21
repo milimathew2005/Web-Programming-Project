@@ -48,7 +48,8 @@
                     </div>
 
                     <div class="w-full md:w-72">
-                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Student name, ID, or copy code..."
+                        <label for="fines-search" class="sr-only">Search student name, ID, or copy code</label>
+                        <input type="text" id="fines-search" name="search" value="{{ request('search') }}" placeholder="Student name, ID, or copy code..."
                             class="w-full text-xs py-2 rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
                     </div>
                 </form>
@@ -57,7 +58,8 @@
             <!-- Table -->
             @if ($loans->count() > 0)
                 <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden mb-6">
-                    <table class="w-full text-left border-collapse">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
                         <thead>
                             <tr class="bg-gray-50 border-b border-gray-100 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                                 <th class="py-3.5 px-6">Student</th>
@@ -119,6 +121,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    </div>
                 </div>
 
                 <div>

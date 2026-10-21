@@ -29,6 +29,7 @@ class ExpireReservations extends Command
     {
         $expiredReservations = Reservation::where('status', 'pending')
             ->where('expires_at', '<=', now())
+            ->with('bookCopy')
             ->get();
 
         $count = 0;

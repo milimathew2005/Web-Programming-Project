@@ -22,7 +22,10 @@ class DirectIssueLoanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => ['required', 'exists:users,id'],
+            'user_id' => [
+                'required',
+                \Illuminate\Validation\Rule::exists('users', 'id')->where('role', 'student'),
+            ],
             'book_copy_id' => ['required', 'exists:book_copies,id'],
         ];
     }
